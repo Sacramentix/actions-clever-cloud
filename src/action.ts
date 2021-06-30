@@ -97,7 +97,12 @@ export default async function run({
 }: Arguments): Promise<void> {
   try {
     core.debug(`Clever CLI path: ${cleverCLI}`)
-    process.chdir(appdir)
+    if (appdir) {
+      process.chdir(appdir)
+      await exec("git init")
+      await exec("git add *")
+      await exec("git commit -m 'build complete'")
+    }
 
     // Authenticate (this will only store the credentials at a known location)
     await exec(cleverCLI, ['login', '--token', token, '--secret', secret])
