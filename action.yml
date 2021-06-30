@@ -15,7 +15,7 @@ inputs:
     description: |
       The ID of your application (can be found in the Clever Cloud console).
       Takes precedence over `alias` if both are defined.
-   appdir:
+  appdir:
     required: false
     description: |
       The subdir to be deployed,
