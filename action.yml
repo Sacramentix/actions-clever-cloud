@@ -18,7 +18,8 @@ inputs:
    appdir:
     required: false
     description: |
-      The subdir to be deployed
+      The subdir to be deployed,
+      if you don't want to deploy the whole git repo
   extraEnvSafelist:
     required: false
     description: |
