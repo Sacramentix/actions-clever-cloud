@@ -12,6 +12,7 @@ export interface Arguments {
   secret: string
   alias?: string
   appID?: string
+  appdir?: string
   timeout?: number
   cleverCLI: string
   extraEnv?: ExtraEnv
@@ -70,12 +71,14 @@ export function processArguments(): Arguments {
 
   const appID = core.getInput('appID')
   const alias = core.getInput('alias')
+  const appdir = core.getInput('appdir')
   const timeout = parseInt(core.getInput('timeout')) || undefined
   return {
     token,
     secret,
     alias,
     appID,
+    appdir,
     timeout,
     cleverCLI: path.resolve(__dirname, '../node_modules/.bin/clever'),
     extraEnv: listExtraEnv()
@@ -86,6 +89,7 @@ export default async function run({
   token,
   secret,
   appID,
+  appdir,
   alias,
   cleverCLI,
   timeout,
@@ -93,6 +97,7 @@ export default async function run({
 }: Arguments): Promise<void> {
   try {
     core.debug(`Clever CLI path: ${cleverCLI}`)
+    process.chdir(appdir)
 
     // Authenticate (this will only store the credentials at a known location)
     await exec(cleverCLI, ['login', '--token', token, '--secret', secret])
