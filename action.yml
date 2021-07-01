@@ -32,5 +32,5 @@ inputs:
       This can help saving build minutes with very long deployments,
       but you will lose any deployment failure information.
 runs:
-  using: node
+  using: node12
   image: dist/main.js
