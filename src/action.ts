@@ -98,9 +98,7 @@ export default async function run({
   try {
     core.debug(`Clever CLI path: ${cleverCLI}`)
     if (appdir) {
-      core.debug(process.cwd())
       process.chdir(appdir)
-      core.debug(process.cwd())
       await exec("git init")
       await exec("git add *")
       await exec("git commit -m 'build complete'")
@@ -135,6 +133,9 @@ export default async function run({
       args.push('--alias', appID)
     } else if (alias) {
       args.push('--alias', alias)
+    }
+    if (appdir) {
+      args.push('--force')
     }
 
     if (timeout) {
