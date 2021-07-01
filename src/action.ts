@@ -98,7 +98,9 @@ export default async function run({
   try {
     core.debug(`Clever CLI path: ${cleverCLI}`)
     if (appdir) {
+      core.debug(process.cwd())
       process.chdir(appdir)
+      core.debug(process.cwd())
       await exec("git init")
       await exec("git add *")
       await exec("git commit -m 'build complete'")
