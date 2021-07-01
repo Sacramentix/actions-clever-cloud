@@ -32,5 +32,5 @@ inputs:
       This can help saving build minutes with very long deployments,
       but you will lose any deployment failure information.
 runs:
-  using: docker
-  image: docker://47ng/actions-clever-cloud:latest
+  using: node
+  image: dist/main.js
